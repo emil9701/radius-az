@@ -1,0 +1,9 @@
+# CMS Admin Panel Dockerfile
+FROM node:18-alpine
+WORKDIR /admin
+COPY ./admin-cms/package*.json ./
+RUN npm install
+COPY ./admin-cms .
+RUN npm run build
+EXPOSE 3001
+CMD ["npx", "serve", "-s", "build"]
